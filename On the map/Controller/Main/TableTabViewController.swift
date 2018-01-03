@@ -15,23 +15,15 @@ class TableTabViewController : MainViewController, RetrieveStudentLocationsDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        super.delegate = self
         tableView.delegate =  self
         tableView.dataSource = self
         tableView.tableFooterView = UIView()
         tableView.reloadData()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        super.delegate = self
-        super.retrieveLocations(self as Any!)
-    }
-    
-    var studentLocations: [ParseStudentLocation]?
-    
     //MARK: Delegate
     func onRetrieveStudentLocationsSuccess(_ locations: [ParseStudentLocation]) {
-        studentLocations = locations
         performUIUpdatesOnMain {
             self.tableView.reloadData()
         }

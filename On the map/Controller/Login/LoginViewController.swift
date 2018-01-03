@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: OnTheMapBaseViewController {
+class LoginViewController: UIViewController {
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -21,24 +21,18 @@ class LoginViewController: OnTheMapBaseViewController {
 
     @IBAction func login(_ sender: Any) {
         let errorMessage = checkFields()
-        showActivityIndicator()
         if errorMessage.isEmpty {
+            showActivityIndicator()
             UdacityClient.sharedInstance().login(username: emailTextField.text ?? "", password: passwordTextField.text ?? ""){ [weak self] (response, error) in
-                performUIUpdatesOnMain {
+                if let response = response {
+                    UdacityUserInformation.sharedInstance().sessionId = response.sessionID
+                    UdacityUserInformation.sharedInstance().userId = response.userID
+                    self?.retrieveUserInformation(response.userID)
+                } else {
                     self?.hideActivityIndicator()
-                    if let response = response {
-                        //TODO: save user and session ids
-                        self?.performSegue(withIdentifier: "showMainMenu", sender: nil)
-                    } else {
-                        let errorText : String
-                        if let error = error {
-                            errorText = error.localizedDescription
-                        } else {
-                            errorText = "There was an error trying to log in"
-                        }
-                        self?.presentErrorAlertController(title: "Error", errorMessage: errorText, buttonText: "Ok")
-                    }
+                    self?.showLoginError(error)
                 }
+                
             }
         } else {
             presentErrorAlertController(title: "Required field", errorMessage: errorMessage, buttonText: "Ok")
@@ -47,31 +41,42 @@ class LoginViewController: OnTheMapBaseViewController {
     
     //MARK: Private methods
     
+    private func retrieveUserInformation(_ userId: String) {
+        UdacityClient.sharedInstance().retrieveUserInformation(userId)
+        { [weak self] (response, error) in
+            self?.hideActivityIndicator()
+            if let response = response {
+                UdacityUserInformation.sharedInstance().firstName = response.firstName
+                UdacityUserInformation.sharedInstance().lastName = response.lastName
+                performUIUpdatesOnMain {
+                    self?.performSegue(withIdentifier: "showMainMenu", sender: nil)
+                }
+            } else {
+                self?.showLoginError(error)
+            }
+        }
+    }
+    
+    private func showLoginError(_ error: NSError?) {
+        performUIUpdatesOnMain {
+            let errorText : String
+            if let error = error {
+                errorText = error.localizedDescription
+            } else {
+                errorText = "There was an error trying to log in"
+            }
+            self.presentErrorAlertController(title: "Error", errorMessage: errorText, buttonText: "Ok")
+        }
+    }
+    
     private func checkFields() -> String {
         var result: String?
-        if isTextFieldEmpty(textField: emailTextField) {
+        if emailTextField.isTextFieldEmpty() {
             result = "Username required"
-        } else if isTextFieldEmpty(textField: passwordTextField) {
+        } else if passwordTextField.isTextFieldEmpty() {
             result = "Password required"
         }
         return result ?? ""
-    }
-    
-    private func isTextFieldEmpty(textField: UITextField) -> Bool {
-        var result = true
-        if let text = textField.text {
-            result = text.isEmpty
-        }
-        return result
-    }
-    
-    private func presentErrorAlertController(title: String, errorMessage: String, buttonText: String) {
-        let alert = UIAlertController(title: title, message: errorMessage, preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: buttonText, style: .default, handler: { (action) in
-            self.dismiss(animated: true, completion: nil)
-        })
-        alert.addAction(alertAction)
-        present(alert, animated: true, completion: nil)
     }
     
 }

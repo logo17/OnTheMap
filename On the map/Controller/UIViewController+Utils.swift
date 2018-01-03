@@ -1,5 +1,5 @@
 //
-//  OnTheMapBaseViewController.swift
+//  UIViewController+Utils.swift
 //  On the map
 //
 //  Created by Heriberto Ureña madrigal on 1/3/18.
@@ -9,7 +9,16 @@
 import Foundation
 import UIKit
 
-class OnTheMapBaseViewController : UIViewController {
+extension UIViewController {
+    
+    func presentErrorAlertController(title: String, errorMessage: String, buttonText: String) {
+        let alert = UIAlertController(title: title, message: errorMessage, preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: buttonText, style: .default, handler: { (action) in
+            self.dismiss(animated: true, completion: nil)
+        })
+        alert.addAction(alertAction)
+        present(alert, animated: true, completion: nil)
+    }
     
     func showActivityIndicator() {
         performUIUpdatesOnMain {

@@ -9,11 +9,27 @@
 import Foundation
 import UIKit
 
-class MainViewController : OnTheMapBaseViewController {
+class MainViewController : UIViewController {
     
     var delegate: RetrieveStudentLocationsDelegate!
+    var studentLocations: [ParseStudentLocation]?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        retrieveLocations(self)
+    }
 
     @IBAction func logout(_ sender: Any) {
+        UdacityClient.sharedInstance().logout() {
+            (response, error) in
+            if let error = error {
+                // For Logging
+                print(error)
+            } else {
+                // For Logging
+                print("Sucessfully logout")
+            }
+        }
         dismiss(animated: true, completion: nil)
     }
     
@@ -26,6 +42,7 @@ class MainViewController : OnTheMapBaseViewController {
                 self?.delegate.onRetrieveStudentLocationsFailure(error)
             } else {
                 if let studentLocations = locations?.studentLocations {
+                    self?.studentLocations = studentLocations
                     self?.delegate.onRetrieveStudentLocationsSuccess(studentLocations)
                 }
             }

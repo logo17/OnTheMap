@@ -164,7 +164,7 @@
         <!--Add Location-->
         <scene sceneID="QNQ-ix-MyA">
             <objects>
-                <viewController id="J2y-L2-iUM" sceneMemberID="viewController">
+                <viewController id="J2y-L2-iUM" customClass="FindLocationViewController" customModule="On_the_map" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cZq-aW-723">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -202,7 +202,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <segue destination="fKw-ea-mJz" kind="show" id="w7S-99-JZY"/>
+                                                    <action selector="findLocation:" destination="J2y-L2-iUM" eventType="touchUpInside" id="bZ7-nW-ZNS"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -225,8 +225,16 @@
                         <viewLayoutGuide key="safeArea" id="SGk-6p-Md2"/>
                     </view>
                     <navigationItem key="navigationItem" title="Add Location" id="oh3-Ff-vfZ">
-                        <barButtonItem key="leftBarButtonItem" title="CANCEL" id="4dV-Wq-gm8"/>
+                        <barButtonItem key="leftBarButtonItem" title="CANCEL" id="4dV-Wq-gm8">
+                            <connections>
+                                <action selector="dismissViewController:" destination="J2y-L2-iUM" id="5pQ-eB-Kbb"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="locationTextField" destination="Ez7-N6-4cJ" id="0RD-ru-z2Y"/>
+                        <outlet property="urlTextField" destination="HIY-EC-7S4" id="4CT-Ie-YPm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U5K-W7-cpQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -241,7 +249,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="EEl-or-2B4">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOW-PH-Mth">
                                 <rect key="frame" x="16" y="617" width="343" height="30"/>

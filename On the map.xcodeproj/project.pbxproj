@@ -31,8 +31,12 @@
 		CAE7936E1FFD540C00F46568 /* MapTabViewController+MapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE7936D1FFD540C00F46568 /* MapTabViewController+MapKit.swift */; };
 		CAE793701FFD636900F46568 /* TableTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE7936F1FFD636900F46568 /* TableTabViewController.swift */; };
 		CAE793721FFD63EB00F46568 /* TableTabViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE793711FFD63EB00F46568 /* TableTabViewController+TableView.swift */; };
-		CAE793741FFD701400F46568 /* OnTheMapBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE793731FFD701400F46568 /* OnTheMapBaseViewController.swift */; };
 		CAE793771FFD747C00F46568 /* LoadingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE793761FFD747C00F46568 /* LoadingOverlay.swift */; };
+		CAE7937A1FFD786900F46568 /* FindLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE793791FFD786900F46568 /* FindLocationViewController.swift */; };
+		CAE7937C1FFD81F100F46568 /* TextField+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE7937B1FFD81F100F46568 /* TextField+Utils.swift */; };
+		CAE7937E1FFD834500F46568 /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE7937D1FFD834500F46568 /* UIViewController+Utils.swift */; };
+		CAE793801FFD92B200F46568 /* UdacityUserInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE7937F1FFD92B200F46568 /* UdacityUserInformation.swift */; };
+		CAE793821FFD94F100F46568 /* UdacityUserInformationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE793811FFD94F100F46568 /* UdacityUserInformationResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,8 +66,12 @@
 		CAE7936D1FFD540C00F46568 /* MapTabViewController+MapKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapTabViewController+MapKit.swift"; sourceTree = "<group>"; };
 		CAE7936F1FFD636900F46568 /* TableTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableTabViewController.swift; sourceTree = "<group>"; };
 		CAE793711FFD63EB00F46568 /* TableTabViewController+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableTabViewController+TableView.swift"; sourceTree = "<group>"; };
-		CAE793731FFD701400F46568 /* OnTheMapBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTheMapBaseViewController.swift; sourceTree = "<group>"; };
 		CAE793761FFD747C00F46568 /* LoadingOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingOverlay.swift; sourceTree = "<group>"; };
+		CAE793791FFD786900F46568 /* FindLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindLocationViewController.swift; sourceTree = "<group>"; };
+		CAE7937B1FFD81F100F46568 /* TextField+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField+Utils.swift"; sourceTree = "<group>"; };
+		CAE7937D1FFD834500F46568 /* UIViewController+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utils.swift"; sourceTree = "<group>"; };
+		CAE7937F1FFD92B200F46568 /* UdacityUserInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UdacityUserInformation.swift; sourceTree = "<group>"; };
+		CAE793811FFD94F100F46568 /* UdacityUserInformationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UdacityUserInformationResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,9 +120,11 @@
 		CAE793421FF9791800F46568 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				CAE793781FFD785600F46568 /* Location */,
 				CAE793571FFC74FF00F46568 /* Main */,
 				CAE793551FFC732400F46568 /* Login */,
-				CAE793731FFD701400F46568 /* OnTheMapBaseViewController.swift */,
+				CAE7937B1FFD81F100F46568 /* TextField+Utils.swift */,
+				CAE7937D1FFD834500F46568 /* UIViewController+Utils.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -135,6 +145,8 @@
 				CAE7934D1FF9895200F46568 /* UdacityConstants.swift */,
 				CAE7934F1FFA9EAC00F46568 /* UdacityConvenience.swift */,
 				CAE793511FFAA3CE00F46568 /* UdacityLoginResponse.swift */,
+				CAE7937F1FFD92B200F46568 /* UdacityUserInformation.swift */,
+				CAE793811FFD94F100F46568 /* UdacityUserInformationResponse.swift */,
 			);
 			path = Udacity;
 			sourceTree = "<group>";
@@ -189,6 +201,14 @@
 				CAE793761FFD747C00F46568 /* LoadingOverlay.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		CAE793781FFD785600F46568 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				CAE793791FFD786900F46568 /* FindLocationViewController.swift */,
+			);
+			path = Location;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,13 +283,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAE7937A1FFD786900F46568 /* FindLocationViewController.swift in Sources */,
 				CAE7936E1FFD540C00F46568 /* MapTabViewController+MapKit.swift in Sources */,
 				CAE793541FFC65A900F46568 /* GCDBlackBox.swift in Sources */,
+				CAE793801FFD92B200F46568 /* UdacityUserInformation.swift in Sources */,
 				CAE793641FFD3B0900F46568 /* ParseConvenience.swift in Sources */,
 				CAE793591FFC752C00F46568 /* MapTabViewController.swift in Sources */,
 				CAE7934C1FF9891300F46568 /* UdacityClient.swift in Sources */,
 				CAE793681FFD410B00F46568 /* ParseStudentLocations.swift in Sources */,
-				CAE793741FFD701400F46568 /* OnTheMapBaseViewController.swift in Sources */,
 				CAE793771FFD747C00F46568 /* LoadingOverlay.swift in Sources */,
 				CAE7934E1FF9895200F46568 /* UdacityConstants.swift in Sources */,
 				CAE7936A1FFD454100F46568 /* OnTheMapAnnotation.swift in Sources */,
@@ -278,13 +299,16 @@
 				CAE793621FFD341300F46568 /* BaseClient.swift in Sources */,
 				CAE793721FFD63EB00F46568 /* TableTabViewController+TableView.swift in Sources */,
 				CAE793451FF97EE800F46568 /* LoginViewController+TextField.swift in Sources */,
+				CAE793821FFD94F100F46568 /* UdacityUserInformationResponse.swift in Sources */,
 				CAE793661FFD3E5300F46568 /* ParseStudentLocation.swift in Sources */,
 				CAE793521FFAA3CE00F46568 /* UdacityLoginResponse.swift in Sources */,
 				CAE793501FFA9EAC00F46568 /* UdacityConvenience.swift in Sources */,
 				CAE7935B1FFC77A300F46568 /* MainViewController.swift in Sources */,
 				CAE7936C1FFD4E4900F46568 /* RetrieveStudentLocationsDelegate.swift in Sources */,
+				CAE7937C1FFD81F100F46568 /* TextField+Utils.swift in Sources */,
 				CAE793701FFD636900F46568 /* TableTabViewController.swift in Sources */,
 				CAE7935E1FFD2FAB00F46568 /* ParseClient.swift in Sources */,
+				CAE7937E1FFD834500F46568 /* UIViewController+Utils.swift in Sources */,
 				CAE793601FFD323B00F46568 /* ParseConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

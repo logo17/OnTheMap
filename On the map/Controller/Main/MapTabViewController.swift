@@ -16,13 +16,8 @@ class MapTabViewController : MainViewController, CLLocationManagerDelegate, Retr
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        mapView.delegate =  self
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
         super.delegate = self
-        super.retrieveLocations(self as Any!)
+        mapView.delegate =  self
     }
     
     //MARK - Delegate

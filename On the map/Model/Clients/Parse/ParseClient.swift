@@ -20,11 +20,11 @@ class ParseClient : BaseClient {
     func taskForGETMethod(_ method : String, _ parameters : [String:AnyObject], completionHandlerForGET: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
         
         /* 1. Set the parameters */
-        var parametersWithApiKey = parameters
-        parametersWithApiKey[ParameterKeys.Limit] = ParameterValues.Limit as AnyObject?
+        var parametersWithLimitKey = parameters
+        parametersWithLimitKey[ParameterKeys.Limit] = ParameterValues.Limit as AnyObject?
         
         /* 2/3. Build the URL, Configure the request */
-        let request = NSMutableURLRequest(url: createURLFromParameters(parameters, withPathExtension: method, scheme: Constants.ApiScheme, host: Constants.ApiHost, path: Constants.ApiPath))
+        let request = NSMutableURLRequest(url: createURLFromParameters(parametersWithLimitKey, withPathExtension: method, scheme: Constants.ApiScheme, host: Constants.ApiHost, path: Constants.ApiPath))
         request.httpMethod = "GET"
         request.addValue(HeaderValues.ApplicationId, forHTTPHeaderField: HeaderKeys.ApplicationId)
         request.addValue(HeaderValues.RestApi, forHTTPHeaderField: HeaderKeys.RestApi)
