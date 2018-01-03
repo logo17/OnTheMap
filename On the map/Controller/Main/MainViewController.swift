@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class MainViewController : UIViewController {
+class MainViewController : OnTheMapBaseViewController {
     
     var delegate: RetrieveStudentLocationsDelegate!
 
@@ -18,8 +18,10 @@ class MainViewController : UIViewController {
     }
     
     @IBAction func retrieveLocations(_ sender: Any) {
+        showActivityIndicator()
         ParseClient.sharedInstance().retrieveStudentLocations({
             [weak self] (locations, error) in
+            self?.hideActivityIndicator()
             if let error = error {
                 self?.delegate.onRetrieveStudentLocationsFailure(error)
             } else {

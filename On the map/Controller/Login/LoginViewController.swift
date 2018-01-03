@@ -8,11 +8,10 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: OnTheMapBaseViewController {
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var loginButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,14 +21,14 @@ class LoginViewController: UIViewController {
 
     @IBAction func login(_ sender: Any) {
         let errorMessage = checkFields()
+        showActivityIndicator()
         if errorMessage.isEmpty {
-            loginButton.isEnabled = false
-            UdacityClient.sharedInstance().login(username: emailTextField.text ?? "", password: passwordTextField.text ?? ""){ (response, error) in
+            UdacityClient.sharedInstance().login(username: emailTextField.text ?? "", password: passwordTextField.text ?? ""){ [weak self] (response, error) in
                 performUIUpdatesOnMain {
-                    self.loginButton.isEnabled = true
+                    self?.hideActivityIndicator()
                     if let response = response {
                         //TODO: save user and session ids
-                        self.performSegue(withIdentifier: "showMainMenu", sender: nil)
+                        self?.performSegue(withIdentifier: "showMainMenu", sender: nil)
                     } else {
                         let errorText : String
                         if let error = error {
@@ -37,7 +36,7 @@ class LoginViewController: UIViewController {
                         } else {
                             errorText = "There was an error trying to log in"
                         }
-                        self.presentErrorAlertController(title: "Error", errorMessage: errorText, buttonText: "Ok")
+                        self?.presentErrorAlertController(title: "Error", errorMessage: errorText, buttonText: "Ok")
                     }
                 }
             }
@@ -74,8 +73,6 @@ class LoginViewController: UIViewController {
         alert.addAction(alertAction)
         present(alert, animated: true, completion: nil)
     }
-    
-    
     
 }
 

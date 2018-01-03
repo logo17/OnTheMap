@@ -389,7 +389,6 @@
                     </view>
                     <connections>
                         <outlet property="emailTextField" destination="HeH-4d-Xv5" id="hXu-08-Zrj"/>
-                        <outlet property="loginButton" destination="1yS-gB-WdJ" id="AIF-Mg-aef"/>
                         <outlet property="passwordTextField" destination="gMe-pM-nF7" id="z34-PN-6rk"/>
                         <segue destination="HYP-8m-Vko" kind="show" identifier="showMainMenu" id="2QQ-6b-oBa"/>
                     </connections>
