@@ -19,6 +19,11 @@ class LoginViewController: UIViewController {
         passwordTextField.delegate = self
     }
 
+    @IBAction func signUp(_ sender: Any) {
+        let signUpURL = URL(string: "https://auth.udacity.com/sign-up")
+        UIApplication.shared.open(signUpURL!, options: [:], completionHandler: nil)
+    }
+    
     @IBAction func login(_ sender: Any) {
         let errorMessage = checkFields()
         if errorMessage.isEmpty {
