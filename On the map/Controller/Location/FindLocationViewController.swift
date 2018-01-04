@@ -37,7 +37,7 @@ class FindLocationViewController : UIViewController {
                 let placemarks = placemarks,
                 let location = placemarks.first?.location
                 else {
-                    // handle no location found
+                    self.showNoLocationError()
                     return
             }
                 
@@ -54,14 +54,18 @@ class FindLocationViewController : UIViewController {
                                             completionHandler: { (placemarks, error) in
                                                 if error == nil {
                                                     let firstLocation = placemarks?[0]
-                                                    print(firstLocation)
+                                                    self.performSegue(withIdentifier: "showLocationDetail", sender: firstLocation)
                                                 }
                                                 else {
-                                                    // An error occurred during geocoding.
-                                                    print("Error")
+                                                    //show location error
+                                                    self.showNoLocationError()
                                                 }
             })
         }
+    }
+    
+    private func showNoLocationError() {
+        presentErrorAlertController(title: "Error", errorMessage: "No location found for this text", buttonText: "Ok")
     }
     
     private func checkFields() -> String {
@@ -74,6 +78,17 @@ class FindLocationViewController : UIViewController {
             result = "Valid URL required"
         }
         return result ?? ""
+    }
+    
+    //MARK: prepare segue
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showLocationDetail" {
+            if let placemark = sender as? CLPlacemark {
+                let locationDetailViewController = segue.destination as! LocationDetailViewController
+                locationDetailViewController.placemark = placemark
+            }
+        }
     }
     
 }

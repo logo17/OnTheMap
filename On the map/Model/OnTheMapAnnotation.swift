@@ -21,6 +21,13 @@ class OnTheMapAnnotation : NSObject, MKAnnotation {
         super.init()
     }
     
+    init(title: String, coordinate: CLLocationCoordinate2D) {
+        self.title = title
+        self.coordinate = coordinate
+        self.url = ""
+        super.init()
+    }
+    
     var subtitle: String? {
         return url
     }

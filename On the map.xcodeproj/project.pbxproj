@@ -37,6 +37,8 @@
 		CAE7937E1FFD834500F46568 /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE7937D1FFD834500F46568 /* UIViewController+Utils.swift */; };
 		CAE793801FFD92B200F46568 /* UdacityUserInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE7937F1FFD92B200F46568 /* UdacityUserInformation.swift */; };
 		CAE793821FFD94F100F46568 /* UdacityUserInformationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE793811FFD94F100F46568 /* UdacityUserInformationResponse.swift */; };
+		CAE793841FFDA12800F46568 /* LocationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE793831FFDA12800F46568 /* LocationDetailViewController.swift */; };
+		CAE793861FFDA25000F46568 /* LocationDetailViewController+MapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE793851FFDA25000F46568 /* LocationDetailViewController+MapKit.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +74,8 @@
 		CAE7937D1FFD834500F46568 /* UIViewController+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utils.swift"; sourceTree = "<group>"; };
 		CAE7937F1FFD92B200F46568 /* UdacityUserInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UdacityUserInformation.swift; sourceTree = "<group>"; };
 		CAE793811FFD94F100F46568 /* UdacityUserInformationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UdacityUserInformationResponse.swift; sourceTree = "<group>"; };
+		CAE793831FFDA12800F46568 /* LocationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailViewController.swift; sourceTree = "<group>"; };
+		CAE793851FFDA25000F46568 /* LocationDetailViewController+MapKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocationDetailViewController+MapKit.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +211,8 @@
 			isa = PBXGroup;
 			children = (
 				CAE793791FFD786900F46568 /* FindLocationViewController.swift */,
+				CAE793831FFDA12800F46568 /* LocationDetailViewController.swift */,
+				CAE793851FFDA25000F46568 /* LocationDetailViewController+MapKit.swift */,
 			);
 			path = Location;
 			sourceTree = "<group>";
@@ -297,8 +303,10 @@
 				CA2DF4501FF93D3000EC1FB2 /* LoginViewController.swift in Sources */,
 				CA2DF44E1FF93D3000EC1FB2 /* AppDelegate.swift in Sources */,
 				CAE793621FFD341300F46568 /* BaseClient.swift in Sources */,
+				CAE793861FFDA25000F46568 /* LocationDetailViewController+MapKit.swift in Sources */,
 				CAE793721FFD63EB00F46568 /* TableTabViewController+TableView.swift in Sources */,
 				CAE793451FF97EE800F46568 /* LoginViewController+TextField.swift in Sources */,
+				CAE793841FFDA12800F46568 /* LocationDetailViewController.swift in Sources */,
 				CAE793821FFD94F100F46568 /* UdacityUserInformationResponse.swift in Sources */,
 				CAE793661FFD3E5300F46568 /* ParseStudentLocation.swift in Sources */,
 				CAE793521FFAA3CE00F46568 /* UdacityLoginResponse.swift in Sources */,
