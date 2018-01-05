@@ -28,14 +28,14 @@ class LoginViewController: UIViewController {
         let errorMessage = checkFields()
         if errorMessage.isEmpty {
             showActivityIndicator()
-            UdacityClient.sharedInstance().login(username: emailTextField.text ?? "", password: passwordTextField.text ?? ""){ [weak self] (response, error) in
+            UdacityClient.sharedInstance.login(username: emailTextField.text ?? "", password: passwordTextField.text ?? ""){ [unowned self] (response, error) in
                 if let response = response {
-                    UdacityUserInformation.sharedInstance().sessionId = response.sessionID
-                    UdacityUserInformation.sharedInstance().userId = response.userID
-                    self?.retrieveUserInformation(response.userID)
+                    UdacityUserInformation.sharedInstance.sessionId = response.sessionID
+                    UdacityUserInformation.sharedInstance.userId = response.userID
+                    self.retrieveUserInformation(response.userID)
                 } else {
-                    self?.hideActivityIndicator()
-                    self?.showLoginError(error)
+                    self.hideActivityIndicator()
+                    self.showLoginError(error)
                 }
                 
             }
@@ -47,17 +47,17 @@ class LoginViewController: UIViewController {
     //MARK: Private methods
     
     private func retrieveUserInformation(_ userId: String) {
-        UdacityClient.sharedInstance().retrieveUserInformation(userId)
-        { [weak self] (response, error) in
-            self?.hideActivityIndicator()
+        UdacityClient.sharedInstance.retrieveUserInformation(userId)
+        { [unowned self] (response, error) in
+            self.hideActivityIndicator()
             if let response = response {
-                UdacityUserInformation.sharedInstance().firstName = response.firstName
-                UdacityUserInformation.sharedInstance().lastName = response.lastName
+                UdacityUserInformation.sharedInstance.firstName = response.firstName
+                UdacityUserInformation.sharedInstance.lastName = response.lastName
                 performUIUpdatesOnMain {
-                    self?.performSegue(withIdentifier: "showMainMenu", sender: nil)
+                    self.performSegue(withIdentifier: "showMainMenu", sender: nil)
                 }
             } else {
-                self?.showLoginError(error)
+                self.showLoginError(error)
             }
         }
     }

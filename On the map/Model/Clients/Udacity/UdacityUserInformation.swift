@@ -14,12 +14,10 @@ class UdacityUserInformation : NSObject {
     var sessionId: String?
     var firstName: String?
     var lastName: String?
+    var locationId: String?
     
-    class func sharedInstance() -> UdacityUserInformation {
-        struct Singleton {
-            static var sharedInstance = UdacityUserInformation()
-        }
-        return Singleton.sharedInstance
-    }
+    // MARK: Singleton
+    
+    static let sharedInstance = UdacityUserInformation()
     
 }

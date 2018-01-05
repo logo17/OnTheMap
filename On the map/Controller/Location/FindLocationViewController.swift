@@ -23,6 +23,7 @@ class FindLocationViewController : UIViewController {
     @IBAction func findLocation(_ sender: Any) {
         let errorMessage = checkFields()
         if errorMessage.isEmpty {
+            showActivityIndicator()
             searchLocationFromString(locationTextField.text ?? "")
         } else {
             presentErrorAlertController(title: "Required field", errorMessage: errorMessage, buttonText: "Ok")
@@ -37,7 +38,10 @@ class FindLocationViewController : UIViewController {
                 let placemarks = placemarks,
                 let location = placemarks.first?.location
                 else {
-                    self.showNoLocationError()
+                    performUIUpdatesOnMain {
+                        self.hideActivityIndicator()
+                        self.showNoLocationError()
+                    }
                     return
             }
                 
@@ -53,12 +57,15 @@ class FindLocationViewController : UIViewController {
             geoCoder.reverseGeocodeLocation(lastLocation,
                                             completionHandler: { (placemarks, error) in
                                                 if error == nil {
+                                                    self.hideActivityIndicator()
                                                     let firstLocation = placemarks?[0]
                                                     self.performSegue(withIdentifier: "showLocationDetail", sender: firstLocation)
                                                 }
                                                 else {
                                                     //show location error
-                                                    self.showNoLocationError()
+                                                    performUIUpdatesOnMain {
+                                                        self.showNoLocationError()
+                                                    }
                                                 }
             })
         }
@@ -87,6 +94,7 @@ class FindLocationViewController : UIViewController {
             if let placemark = sender as? CLPlacemark {
                 let locationDetailViewController = segue.destination as! LocationDetailViewController
                 locationDetailViewController.placemark = placemark
+                locationDetailViewController.mediaUrl = urlTextField.text!
             }
         }
     }

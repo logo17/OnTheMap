@@ -9,6 +9,6 @@
 import Foundation
 
 protocol RetrieveStudentLocationsDelegate {
-    func onRetrieveStudentLocationsSuccess(_ locations: [ParseStudentLocation])
+    func onRetrieveStudentLocationsSuccess()
     func onRetrieveStudentLocationsFailure(_ error: NSError)
 }

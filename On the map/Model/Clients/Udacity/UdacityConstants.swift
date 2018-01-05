@@ -11,13 +11,13 @@ import Foundation
 extension UdacityClient {
     struct Constants {
         // MARK: URLs
-        static let ApiScheme = "https"
-        static let ApiHost = "www.udacity.com"
-        static let ApiPath = "/api"
+        static let apiScheme = "https"
+        static let apiHost = "www.udacity.com"
+        static let apiPath = "/api"
     }
     
     struct Methods {
-        static let Session = "/session"
-        static let User = "/users"
+        static let session = "/session"
+        static let user = "/users"
     }
 }

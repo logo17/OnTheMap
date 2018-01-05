@@ -18,19 +18,25 @@ class MapTabViewController : MainViewController, CLLocationManagerDelegate, Retr
         super.viewDidLoad()
         super.delegate = self
         mapView.delegate =  self
+        if let _ = ParseStudentLocations.sharedInstance.studentLocations?.count {
+            onRetrieveStudentLocationsSuccess()
+        } else {
+            super.retrieveLocations(self)
+        }
     }
     
     //MARK - Delegate
-    func onRetrieveStudentLocationsSuccess(_ locations: [ParseStudentLocation]) {
+    func onRetrieveStudentLocationsSuccess() {
         performUIUpdatesOnMain {
-            for location in locations {
+            self.mapView.removeAnnotations(self.mapView.annotations)
+            for location in ParseStudentLocations.sharedInstance.studentLocations! {
                 self.mapView.addAnnotation(OnTheMapAnnotation(title: "\(location.firstName) \(location.lastName)", url: location.mediaUrl, coordinate: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)))
             }
         }
     }
     
     func onRetrieveStudentLocationsFailure(_ error: NSError) {
-        print(error)
+        presentErrorAlertController(title: "Error", errorMessage: error.localizedDescription, buttonText: "Ok")
     }
     
 }

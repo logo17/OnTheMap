@@ -14,6 +14,10 @@ class UdacityClient : BaseClient {
     var userID: String? = nil
     var sessionID: String? = nil
     
+    // MARK: Singleton
+    
+    static let sharedInstance = UdacityClient()
+    
     // MARK: Initializers
     
     override init() {
@@ -26,7 +30,7 @@ class UdacityClient : BaseClient {
         /* 1. Set the parameters */
         
         /* 2/3. Build the URL, Configure the request */
-        let request = NSMutableURLRequest(url: createURLFromParameters(parameters, withPathExtension: method, scheme: Constants.ApiScheme, host: Constants.ApiHost, path: Constants.ApiPath))
+        let request = NSMutableURLRequest(url: createURLFromParameters(parameters, withPathExtension: method, scheme: Constants.apiScheme, host: Constants.apiHost, path: Constants.apiPath))
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -43,7 +47,7 @@ class UdacityClient : BaseClient {
             
             /* GUARD: Was there an error> */
             guard (error == nil) else {
-                sendError("There was an error with your request: \(error!)")
+                sendError("There was an error with your request: \(error!.localizedDescription)")
                 return
             }
             
@@ -75,7 +79,7 @@ class UdacityClient : BaseClient {
         /* 1. Set the parameters */
         
         /* 2/3. Build the URL, Configure the request */
-        let request = NSMutableURLRequest(url: createURLFromParameters(parameters, withPathExtension: method, scheme: Constants.ApiScheme, host: Constants.ApiHost, path: Constants.ApiPath))
+        let request = NSMutableURLRequest(url: createURLFromParameters(parameters, withPathExtension: method, scheme: Constants.apiScheme, host: Constants.apiHost, path: Constants.apiPath))
         
         /* 4. Make the request */
         let task = session.dataTask(with: request as URLRequest, completionHandler: {
@@ -88,7 +92,7 @@ class UdacityClient : BaseClient {
             
             /* GUARD: Was there an error> */
             guard (error == nil) else {
-                sendError("There was an error with your request: \(error!)")
+                sendError("There was an error with your request: \(error!.localizedDescription)")
                 return
             }
             
@@ -120,7 +124,7 @@ class UdacityClient : BaseClient {
         /* 1. Set the parameters */
         
         /* 2/3. Build the URL, Configure the request */
-        let request = NSMutableURLRequest(url: createURLFromParameters(parameters, withPathExtension: method, scheme: Constants.ApiScheme, host: Constants.ApiHost, path: Constants.ApiPath))
+        let request = NSMutableURLRequest(url: createURLFromParameters(parameters, withPathExtension: method, scheme: Constants.apiScheme, host: Constants.apiHost, path: Constants.apiPath))
         request.httpMethod = "DELETE"
         var xsrfCookie: HTTPCookie? = nil
         let sharedCookieStorage = HTTPCookieStorage.shared
@@ -142,7 +146,7 @@ class UdacityClient : BaseClient {
             
             /* GUARD: Was there an error> */
             guard (error == nil) else {
-                sendError("There was an error with your request: \(error!)")
+                sendError("There was an error with your request: \(error!.localizedDescription)")
                 return
             }
             
@@ -188,15 +192,6 @@ class UdacityClient : BaseClient {
         }
         
         completionHandlerForConvertData(parsedResult, nil)
-    }
-    
-    //MARK: Shared Instance
-    
-    class func sharedInstance() -> UdacityClient {
-        struct Singleton {
-            static var sharedInstance = UdacityClient()
-        }
-        return Singleton.sharedInstance
     }
     
 }

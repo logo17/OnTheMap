@@ -20,17 +20,22 @@ class TableTabViewController : MainViewController, RetrieveStudentLocationsDeleg
         tableView.dataSource = self
         tableView.tableFooterView = UIView()
         tableView.reloadData()
+        if let _ = ParseStudentLocations.sharedInstance.studentLocations?.count {
+            onRetrieveStudentLocationsSuccess()
+        } else {
+            super.retrieveLocations(self)
+        }
     }
     
     //MARK: Delegate
-    func onRetrieveStudentLocationsSuccess(_ locations: [ParseStudentLocation]) {
+    func onRetrieveStudentLocationsSuccess() {
         performUIUpdatesOnMain {
             self.tableView.reloadData()
         }
     }
     
     func onRetrieveStudentLocationsFailure(_ error: NSError) {
-        
+        presentErrorAlertController(title: "Error", errorMessage: error.localizedDescription, buttonText: "Ok")
     }
     
     
